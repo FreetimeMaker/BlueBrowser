@@ -187,7 +187,7 @@ fun AboutDialog(onDismiss: () -> Unit) {
         text = {
             Column {
                 Text(
-                    text = "BlueBrowser v1.0",
+                    text = "BlueBrowser v1.0.1",
                     fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.height(8.dp))

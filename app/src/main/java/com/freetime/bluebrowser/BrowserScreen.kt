@@ -29,7 +29,8 @@ import java.util.*
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BrowserScreen(
-    viewModel: BrowserViewModel = viewModel()
+    viewModel: BrowserViewModel = viewModel(),
+    onMenuClick: () -> Unit = {}
 ) {
     var urlText by remember { mutableStateOf("") }
     var showUrlBar by remember { mutableStateOf(true) }
@@ -40,7 +41,7 @@ fun BrowserScreen(
     }
 
     Scaffold(
-        topBar = {
+        bottomBar = {
             TopAppBar(
                 title = { Text("BlueBrowser") },
                 actions = {
@@ -59,7 +60,7 @@ fun BrowserScreen(
                 }
             )
         },
-        bottomBar = {
+        topBar = {
             BrowserBottomBar(
                 viewModel = viewModel,
                 onUrlSubmit = { url ->
@@ -225,7 +226,7 @@ fun BrowserBottomBar(
                     Icon(Icons.Outlined.Tab, contentDescription = "Tabs")
                 }
 
-                IconButton(onClick = { /* Menu */ }) {
+                IconButton(onClick = onMenuClick) {
                     Icon(Icons.Default.MoreVert, contentDescription = "Menu")
                 }
             }

@@ -3,7 +3,7 @@ set -e
 
 ### CONFIG ###
 APP_ID="com.freetime.bluebrowser"
-TAG="v1.0.0"   # <-- HIER deine Version eintragen
+TAG="v1.0.1"   # <-- HIER deine Version eintragen
 KEYSTORE="$HOME/AndroidStudioProjects/BlueBrowser/BlueBrowser-KeyStore.jks"
 KEY_ALIAS="alle"
 KEY_PASS="KKKKKK"
