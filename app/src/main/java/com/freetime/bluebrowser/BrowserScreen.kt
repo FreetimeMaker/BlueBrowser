@@ -6,11 +6,15 @@ import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.Bookmark
+import androidx.compose.material.icons.outlined.History
+import androidx.compose.material.icons.outlined.Tab
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -41,10 +45,10 @@ fun BrowserScreen(
                 title = { Text("BlueBrowser") },
                 actions = {
                     IconButton(onClick = { viewModel.showBookmarksDialog.value = true }) {
-                        Icon(Icons.Default.Bookmark, contentDescription = "Bookmarks")
+                        Icon(Icons.Outlined.Bookmark, contentDescription = "Bookmarks")
                     }
                     IconButton(onClick = { viewModel.showHistoryDialog.value = true }) {
-                        Icon(Icons.Default.History, contentDescription = "History")
+                        Icon(Icons.Outlined.History, contentDescription = "History")
                     }
                     IconButton(onClick = { viewModel.showSearchEngineDialog.value = true }) {
                         Icon(Icons.Default.Search, contentDescription = "Search Engine")
@@ -208,19 +212,19 @@ fun BrowserBottomBar(
                         Icon(Icons.Default.KeyboardArrowUp, contentDescription = "Show URL bar")
                     }
                 }
-                
+
                 IconButton(onClick = { /* Refresh */ }) {
                     Icon(Icons.Default.Refresh, contentDescription = "Refresh")
                 }
-                
+
                 IconButton(onClick = { /* Home */ }) {
                     Icon(Icons.Default.Home, contentDescription = "Home")
                 }
-                
+
                 IconButton(onClick = { /* Tabs */ }) {
-                    Icon(Icons.Default.Tab, contentDescription = "Tabs")
+                    Icon(Icons.Outlined.Tab, contentDescription = "Tabs")
                 }
-                
+
                 IconButton(onClick = { /* Menu */ }) {
                     Icon(Icons.Default.MoreVert, contentDescription = "Menu")
                 }
@@ -242,13 +246,13 @@ fun WebViewContent(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT
                 )
-                
+
                 settings.javaScriptEnabled = true
                 settings.domStorageEnabled = true
                 settings.databaseEnabled = true
                 settings.allowFileAccess = true
                 settings.allowContentAccess = true
-                
+
                 webViewClient = object : WebViewClient() {
                     override fun onPageFinished(view: WebView?, url: String?) {
                         super.onPageFinished(view, url)
@@ -257,25 +261,25 @@ fun WebViewContent(
                         viewModel.canGoForward.value = canGoForward()
                         onPageTitleChanged(view?.title ?: "")
                     }
-                    
+
                     override fun onPageStarted(view: WebView?, url: String?, favicon: android.graphics.Bitmap?) {
                         super.onPageStarted(view, url, favicon)
                         viewModel.isLoading.value = true
                         viewModel.currentUrl.value = url ?: ""
                     }
                 }
-                
+
                 webChromeClient = object : WebChromeClient() {
                     override fun onProgressChanged(view: WebView?, newProgress: Int) {
                         // Update progress if needed
                     }
-                    
+
                     override fun onReceivedTitle(view: WebView?, title: String?) {
                         super.onReceivedTitle(view, title)
                         onPageTitleChanged(title ?: "")
                     }
                 }
-                
+
                 loadUrl(viewModel.currentUrl.value)
             }
         },
@@ -337,7 +341,7 @@ fun BookmarksDialog(
     onRemoveBookmark: (Bookmark) -> Unit
 ) {
     var showAddBookmark by remember { mutableStateOf(false) }
-    
+
     if (showAddBookmark) {
         AddBookmarkDialog(
             onAdd = { title, url ->
@@ -397,7 +401,7 @@ fun AddBookmarkDialog(
 ) {
     var title by remember { mutableStateOf("") }
     var url by remember { mutableStateOf("") }
-    
+
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text("Add Bookmark") },
@@ -446,10 +450,10 @@ fun HistoryDialog(
     onClearHistory: () -> Unit
 ) {
     val dateFormat = remember { SimpleDateFormat("MMM dd, HH:mm", Locale.getDefault()) }
-    
+
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { 
+        title = {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,

@@ -2,13 +2,19 @@
 set -e
 
 ### CONFIG ###
-APP_ID="com.freetime.geoweather"
-TAG="v1.1.3"   # <-- HIER deine Version eintragen
-KEYSTORE="$HOME/AndroidStudioProjects/GeoWeather/GeoWeather-KeyStore.jks"
+APP_ID="com.freetime.bluebrowser"
+TAG="v1.0.0"   # <-- HIER deine Version eintragen
+KEYSTORE="$HOME/AndroidStudioProjects/BlueBrowser/BlueBrowser-KeyStore.jks"
 KEY_ALIAS="alle"
 KEY_PASS="KKKKKK"
-OUT_APK="GeoWeather-$TAG.apk"
+OUT_APK="BlueBrowser-$TAG.apk"
 ################
+
+echo "==> Erstelle Tag"
+git tag "$TAG"
+
+echo "==> Pushe Tag auf GitHub"
+git push origin "$TAG"
 
 echo "==> Hole Tags von GitHub"
 git fetch --tags
