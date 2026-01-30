@@ -16,3 +16,5 @@ local.properties
 .idea
 .vscode
 .kotlin
+*.apk
+*.apk.idsig
