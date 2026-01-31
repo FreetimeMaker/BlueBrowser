@@ -79,7 +79,8 @@ fun BrowserScreen(
                 urlText = urlText,
                 onUrlChange = { urlText = it },
                 showUrlBar = showUrlBar,
-                onToggleUrlBar = { showUrlBar = !showUrlBar }
+                onToggleUrlBar = { showUrlBar = !showUrlBar },
+                onMenuClick = onMenuClick
             )
         }
     ) { paddingValues ->
@@ -151,7 +152,8 @@ fun BrowserBottomBar(
     urlText: String,
     onUrlChange: (String) -> Unit,
     showUrlBar: Boolean,
-    onToggleUrlBar: () -> Unit
+    onToggleUrlBar: () -> Unit,
+    onMenuClick: () -> Unit = {}
 ) {
     Column {
         if (showUrlBar) {

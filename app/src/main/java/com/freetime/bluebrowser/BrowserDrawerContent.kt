@@ -1,5 +1,6 @@
 package com.freetime.bluebrowser
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -36,67 +37,41 @@ fun BrowserDrawerContent(
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             item {
-                ListItem(
-                    headlineContent = { Text("New Tab") },
-                    leadingContent = { Icon(Icons.Default.Add, contentDescription = null) },
-                    trailingContent = { Text("Ctrl+T") },
-                    onClick = {
-                        showNewTabDialog = true
-                        onCloseDrawer()
-                    }
-                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            showNewTabDialog = true
+                            onCloseDrawer()
+                        }
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(Icons.Default.Add, contentDescription = null)
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text("New Tab")
+                    Spacer(modifier = Modifier.weight(1f))
+                    Text("Ctrl+T")
+                }
             }
 
             item {
-                ListItem(
-                    headlineContent = { Text("New Incognito Tab") },
-                    leadingContent = { Icon(Icons.Default.PersonOff, contentDescription = null) },
-                    trailingContent = { Text("Ctrl+Shift+N") },
-                    onClick = {
-                        // Incognito functionality
-                        onCloseDrawer()
-                    }
-                )
-            }
-
-            item {
-                HorizontalDivider()
-            }
-
-            item {
-                ListItem(
-                    headlineContent = { Text("Downloads") },
-                    leadingContent = { Icon(Icons.Default.Download, contentDescription = null) },
-                    trailingContent = { Text("Ctrl+J") },
-                    onClick = {
-                        showDownloadsDialog = true
-                        onCloseDrawer()
-                    }
-                )
-            }
-
-            item {
-                ListItem(
-                    headlineContent = { Text("History") },
-                    leadingContent = { Icon(Icons.Default.History, contentDescription = null) },
-                    trailingContent = { Text("Ctrl+H") },
-                    onClick = {
-                        // History functionality
-                        onCloseDrawer()
-                    }
-                )
-            }
-
-            item {
-                ListItem(
-                    headlineContent = { Text("Bookmarks") },
-                    leadingContent = { Icon(Icons.Default.Bookmark, contentDescription = null) },
-                    trailingContent = { Text("Ctrl+Shift+B") },
-                    onClick = {
-                        // Bookmarks functionality
-                        onCloseDrawer()
-                    }
-                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            // Incognito functionality
+                            onCloseDrawer()
+                        }
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(Icons.Default.PersonOff, contentDescription = null)
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text("New Incognito Tab")
+                    Spacer(modifier = Modifier.weight(1f))
+                    Text("Ctrl+Shift+N")
+                }
             }
 
             item {
@@ -104,37 +79,60 @@ fun BrowserDrawerContent(
             }
 
             item {
-                ListItem(
-                    headlineContent = { Text("Find in Page") },
-                    leadingContent = { Icon(Icons.Default.Search, contentDescription = null) },
-                    trailingContent = { Text("Ctrl+F") },
-                    onClick = {
-                        showFindInPageDialog = true
-                        onCloseDrawer()
-                    }
-                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            showDownloadsDialog = true
+                            onCloseDrawer()
+                        }
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(Icons.Default.Download, contentDescription = null)
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text("Downloads")
+                    Spacer(modifier = Modifier.weight(1f))
+                    Text("Ctrl+J")
+                }
             }
 
             item {
-                ListItem(
-                    headlineContent = { Text("Desktop Site") },
-                    leadingContent = { Icon(Icons.Default.Computer, contentDescription = null) },
-                    onClick = {
-                        // Desktop site functionality
-                        onCloseDrawer()
-                    }
-                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            // History functionality
+                            onCloseDrawer()
+                        }
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(Icons.Default.History, contentDescription = null)
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text("History")
+                    Spacer(modifier = Modifier.weight(1f))
+                    Text("Ctrl+H")
+                }
             }
 
             item {
-                ListItem(
-                    headlineContent = { Text("Zoom") },
-                    leadingContent = { Icon(Icons.Default.ZoomIn, contentDescription = null) },
-                    onClick = {
-                        // Zoom functionality
-                        onCloseDrawer()
-                    }
-                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            // Bookmarks functionality
+                            onCloseDrawer()
+                        }
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(Icons.Default.Bookmark, contentDescription = null)
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text("Bookmarks")
+                    Spacer(modifier = Modifier.weight(1f))
+                    Text("Ctrl+Shift+B")
+                }
             }
 
             item {
@@ -142,32 +140,101 @@ fun BrowserDrawerContent(
             }
 
             item {
-                ListItem(
-                    headlineContent = { Text("Settings") },
-                    leadingContent = { Icon(Icons.Default.Settings, contentDescription = null) },
-                    onClick = {
-                        // Settings functionality
-                        onCloseDrawer()
-                    }
-                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            showFindInPageDialog = true
+                            onCloseDrawer()
+                        }
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(Icons.Default.Search, contentDescription = null)
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text("Find in Page")
+                    Spacer(modifier = Modifier.weight(1f))
+                    Text("Ctrl+F")
+                }
             }
 
             item {
-                ListItem(
-                    headlineContent = { Text("Help & Feedback") },
-                    leadingContent = { Icon(Icons.Default.Help, contentDescription = null) },
-                    onClick = {
-                        // Help functionality
-                        onCloseDrawer()
-                    }
-                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            // Desktop site functionality
+                            onCloseDrawer()
+                        }
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(Icons.Default.Computer, contentDescription = null)
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text("Desktop Site")
+                }
+            }
+
+            item {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            // Zoom functionality
+                            onCloseDrawer()
+                        }
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(Icons.Default.ZoomIn, contentDescription = null)
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text("Zoom")
+                }
+            }
+
+            item {
+                HorizontalDivider()
+            }
+
+            item {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            // Settings functionality
+                            onCloseDrawer()
+                        }
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(Icons.Default.Settings, contentDescription = null)
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text("Settings")
+                }
+            }
+
+            item {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            // Help functionality
+                            onCloseDrawer()
+                        }
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(Icons.Default.Help, contentDescription = null)
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text("Help & Feedback")
+                }
             }
         }
 
         Spacer(modifier = Modifier.weight(1f))
 
         Text(
-            text = "Version 1.0.0",
+            text = "Version 1.0.1",
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.align(Alignment.CenterHorizontally)

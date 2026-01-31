@@ -18,3 +18,4 @@ local.properties
 .kotlin
 *.apk
 *.apk.idsig
+app/release

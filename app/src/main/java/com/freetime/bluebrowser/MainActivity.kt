@@ -15,6 +15,7 @@ import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Surface
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,14 +40,15 @@ fun BrowserScreenWithDrawer() {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val systemUiController = rememberSystemUiController()
-    val useDarkIcons = MaterialTheme.colorScheme.primary == MaterialTheme.colorScheme.surface
+    val colorScheme = MaterialTheme.colorScheme
+    val useDarkIcons = colorScheme.primary == colorScheme.surface
 
     // Hide system bars
     LaunchedEffect(Unit) {
         systemUiController.isStatusBarVisible = false
         systemUiController.isNavigationBarVisible = false
         systemUiController.setSystemBarsColor(
-            color = MaterialTheme.colorScheme.surface,
+            color = colorScheme.surface,
             darkIcons = useDarkIcons
         )
     }
@@ -72,13 +74,5 @@ fun BrowserScreenWithDrawer() {
                 onMenuClick = { scope.launch { drawerState.open() } }
             )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun BrowserScreenPreview() {
-    BlueBrowserTheme {
-        BrowserScreenWithDrawer()
     }
 }
